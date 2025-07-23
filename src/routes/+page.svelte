@@ -1,5 +1,6 @@
 <script lang="ts">
   import { onMount } from 'svelte';
+import { browser } from '$app/environment';
   import { supabase } from '$lib/supabase';
   import { getAllocation, markClaimed } from '$lib/getAllocation';
   import type { AllocationRow } from '$lib/getAllocation';
@@ -14,7 +15,7 @@
   // Connect to Phantom wallet
   async function connectWallet() {
     //@ts-ignore
-    const provider = window?.solana;
+    const provider = browser ? window?.solana : undefined;
     if (!provider || !provider.isPhantom) {
       message.set('Please install Phantom Wallet to continue.');
       return;
