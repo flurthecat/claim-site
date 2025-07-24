@@ -30,8 +30,8 @@ A modern SvelteKit application that allows users to connect their Phantom wallet
    
    Add your Supabase credentials to `.env`:
    ```
-   PUBLIC_SUPABASE_URL=https://your-project.supabase.co
-   PUBLIC_SUPABASE_ANON_KEY=your-anon-key-here
+   VITE_PUBLIC_SUPABASE_URL=https://your-project.supabase.co
+   VITE_PUBLIC_SUPABASE_ANON_KEY=your-anon-key-here
    ```
 
 4. **Database Schema**

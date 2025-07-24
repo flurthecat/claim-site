@@ -1,4 +1,4 @@
-import { supabase } from './supabase.js';
+import { supabase, isSupabaseConfigured } from './supabase.js';
 
 export interface AllocationRow {
   wallet_address: string;
@@ -9,6 +9,10 @@ export interface AllocationRow {
 }
 
 export async function getAllocation(walletAddress: string): Promise<AllocationRow | null> {
+  if (!isSupabaseConfigured()) {
+    throw new Error('Supabase configuration is missing. Please check your environment variables.');
+  }
+
   try {
     const { data, error } = await supabase
       .from('flur_claims')
@@ -29,6 +33,10 @@ export async function getAllocation(walletAddress: string): Promise<AllocationRo
 }
 
 export async function markClaimed(walletAddress: string): Promise<void> {
+  if (!isSupabaseConfigured()) {
+    throw new Error('Supabase configuration is missing. Please check your environment variables.');
+  }
+
   try {
     const { error } = await supabase
       .from('flur_claims')
