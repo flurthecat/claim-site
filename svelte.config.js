@@ -5,7 +5,7 @@ const config = {
   preprocess: preprocess(), 
   kit: {
     adapter: adapter({
-      runtime: 'nodejs18.x'
+      runtime: 'edge'
     }),
   }
 };
