@@ -4,7 +4,9 @@ import adapter from '@sveltejs/adapter-vercel';
 const config = {
   preprocess: preprocess(), 
   kit: {
-    adapter: adapter(),
+    adapter: adapter({
+      runtime: 'nodejs18.x'
+    }),
   }
 };
 
