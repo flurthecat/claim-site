@@ -1,4 +1,4 @@
-import { supabase } from './supabase';
+import { supabase } from './supabase.js';
 
 export interface AllocationRow {
   wallet_address: string;
@@ -8,22 +8,42 @@ export interface AllocationRow {
   claimed_at: string | null;
 }
 
-export async function getAllocation(walletAddress: string) {
-  const { data, error } = await supabase
-    .from<AllocationRow>('flur_claims')
-    .select('*')
-    .eq('wallet_address', walletAddress)
-    .maybeSingle();
+export async function getAllocation(walletAddress: string): Promise<AllocationRow | null> {
+  try {
+    const { data, error } = await supabase
+      .from('flur_claims')
+      .select('*')
+      .eq('wallet_address', walletAddress)
+      .maybeSingle();
 
-  if (error) throw error;
-  return data;
+    if (error) {
+      console.error('Error fetching allocation:', error);
+      throw error;
+    }
+
+    return data;
+  } catch (error) {
+    console.error('getAllocation error:', error);
+    throw error;
+  }
 }
 
-export async function markClaimed(walletAddress: string) {
-  const { error } = await supabase
-    .from('flur_claims')
-    .update({ claimed: true, claimed_at: new Date().toISOString() })
-    .eq('wallet_address', walletAddress);
+export async function markClaimed(walletAddress: string): Promise<void> {
+  try {
+    const { error } = await supabase
+      .from('flur_claims')
+      .update({ 
+        claimed: true, 
+        claimed_at: new Date().toISOString() 
+      })
+      .eq('wallet_address', walletAddress);
 
-  if (error) throw error;
+    if (error) {
+      console.error('Error marking as claimed:', error);
+      throw error;
+    }
+  } catch (error) {
+    console.error('markClaimed error:', error);
+    throw error;
+  }
 }

@@ -1,12 +1,16 @@
-import preprocess from 'svelte-preprocess';
-import adapter from '@sveltejs/adapter-vercel';
+import adapter from '@sveltejs/adapter-static';
+import { vitePreprocess } from '@sveltejs/vite-plugin-svelte';
 
 const config = {
-  preprocess: preprocess(), 
+  preprocess: vitePreprocess(),
   kit: {
     adapter: adapter({
-      runtime: 'edge'
-    }),
+      pages: 'build',
+      assets: 'build',  
+      fallback: 'index.html',
+      precompress: false,  
+      strict: true
+    })
   }
 };
 
