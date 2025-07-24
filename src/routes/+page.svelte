@@ -115,13 +115,20 @@
 
 <svelte:head>
   <title>Flur Token Claim Site</title>
-  <meta name="description" content="Claim your allocated Flur tokens" />
+  <meta name="description" content="Claim your allocated Flur tokens - For The 9000 who believed" />
 </svelte:head>
 
 <main class="container">
   <div class="header">
-    <h1>🏆 Flur Token Claim</h1>
-    <p>Connect your Phantom wallet to check your token allocation</p>
+    <h1>🐱 Flur Token Claim</h1>
+    <p>For The 9000 who believed. For The Few who stayed loyal. Connect your Phantom wallet to claim your $FLUR tokens.</p>
+  </div>
+
+  <!-- Token Info Section matching main site -->
+  <div class="token-info">
+    <div class="token-label">CAT-20 ID</div>
+    <div class="token-symbol">$FLUR</div>
+    <div class="token-value">028ae179783cd237f475ca1a58d5c8b3ecec3884862d337971fc168d5e92c16e_0</div>
   </div>
 
   <div class="card">
@@ -129,8 +136,8 @@
       <!-- Wallet Connection -->
       <div class="connect-section">
         <Wallet size={48} weight="duotone" />
-        <h2>Connect Your Wallet</h2>
-        <p>Connect your Phantom wallet to check if you're eligible for token claims.</p>
+        <h2>Connect Your Phantom Wallet</h2>
+        <p>Are you one of The 9000? Connect your wallet to see if you're eligible for $FLUR token claims. Only those who believed from the beginning can claim their share of Flur's legacy.</p>
         
         <button 
           class="connect-btn" 
@@ -154,7 +161,7 @@
       <!-- Connected Wallet View -->
       <div class="wallet-section">
         <div class="wallet-info">
-          <h2>Connected Wallet</h2>
+          <h2>Wallet Connected</h2>
           <p class="address">{walletAddress}</p>
           <button class="disconnect-btn" on:click={disconnectWallet}>
             Disconnect
@@ -164,7 +171,7 @@
         {#if loading}
           <div class="loading-section">
             <span class="spinner"></span>
-            <p>Checking allocation...</p>
+            <p>Checking if you're one of The 9000...</p>
           </div>
         {:else if allocation}
           <!-- Allocation Found -->
@@ -172,9 +179,9 @@
             {#if allocation.claimed}
               <!-- Already Claimed -->
               <div class="claimed-status">
-                <CheckCircle size={48} weight="fill" color="#22c55e" />
-                <h3>Already Claimed</h3>
-                <p>You have already claimed your tokens on {formatDate(allocation.claimed_at || '')}</p>
+                <CheckCircle size={48} weight="fill" color="#4caf50" />
+                <h3>Tokens Already Claimed</h3>
+                <p>You've already claimed your $FLUR tokens on {formatDate(allocation.claimed_at || '')}. Thank you for being one of The 9000 who believed in Flur from the beginning!</p>
                 <div class="allocation-details">
                   <p><strong>Allocation:</strong> {allocation.allocation_amount.toLocaleString()} tokens</p>
                   <p><strong>Qualified for:</strong> {allocation.tokens_qualified_for}</p>
@@ -183,8 +190,8 @@
             {:else}
               <!-- Available to Claim -->
               <div class="claim-section">
-                <h3>🎉 Congratulations!</h3>
-                <p>You are eligible to claim tokens</p>
+                <h3>🎉 Welcome, Fellow Believer!</h3>
+                <p>You are one of The 9000! Your loyalty to $FLUR has been rewarded. Claim your tokens and join Flur on his journey to greatness.</p>
                 
                 <div class="allocation-details">
                   <div class="detail-item">
@@ -204,10 +211,10 @@
                 >
                   {#if claiming}
                     <span class="spinner"></span>
-                    Processing Claim...
+                    Claiming Your $FLUR...
                   {:else}
                     <CheckCircle size={20} weight="bold" />
-                    Claim Tokens
+                    Claim Your $FLUR
                   {/if}
                 </button>
               </div>
@@ -216,8 +223,8 @@
         {:else}
           <!-- No Allocation -->
           <div class="no-allocation">
-            <h3>No Allocation Found</h3>
-            <p>This wallet is not eligible for token claims.</p>
+            <h3>Wallet Not Eligible</h3>
+            <p>This wallet is not among The 9000 who believed in $FLUR from the beginning. Only the original minters and loyal holders are eligible for this claim.</p>
           </div>
         {/if}
 
@@ -230,18 +237,22 @@
 </main>
 
 <style>
+  /* Import Gloria Hallelujah font to match main site */
+  @import url('https://fonts.googleapis.com/css2?family=Gloria+Hallelujah&display=swap');
+
   :global(body) {
     margin: 0;
     padding: 0;
-    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    font-family: 'Gloria Hallelujah', cursive;
+    background-color: #e9e9de;
+    color: #333;
     min-height: 100vh;
   }
 
   .container {
-    max-width: 600px;
+    max-width: 800px;
     margin: 0 auto;
-    padding: 2rem 1rem;
+    padding: 20px;
     min-height: 100vh;
     display: flex;
     flex-direction: column;
@@ -250,32 +261,34 @@
 
   .header {
     text-align: center;
-    margin-bottom: 2rem;
-    color: white;
+    margin-bottom: 40px;
+    color: #333;
   }
 
   .header h1 {
     font-size: 2.5rem;
-    margin: 0 0 0.5rem 0;
-    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+    margin: 0 0 10px 0;
+    font-family: 'Gloria Hallelujah', cursive;
+    color: #333;
   }
 
   .header p {
     font-size: 1.1rem;
-    opacity: 0.9;
     margin: 0;
+    color: #555;
   }
 
   .card {
-    background: white;
-    border-radius: 16px;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+    background-color: #f4f4f4;
+    border-radius: 12px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.15);
     overflow: hidden;
+    margin-bottom: 20px;
   }
 
   .connect-section,
   .wallet-section {
-    padding: 2rem;
+    padding: 40px;
     text-align: center;
   }
 
@@ -283,40 +296,44 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 1rem;
+    gap: 20px;
   }
 
   .connect-section h2 {
     margin: 0;
-    color: #334155;
+    color: #333;
     font-size: 1.5rem;
+    font-family: 'Gloria Hallelujah', cursive;
   }
 
   .connect-section p {
-    color: #64748b;
+    color: #555;
     margin: 0;
+    font-size: 1rem;
+    line-height: 1.5;
   }
 
   .connect-btn {
-    background: #6366f1;
+    background: #666;
     color: white;
     border: none;
-    border-radius: 12px;
-    padding: 1rem 2rem;
+    border-radius: 8px;
+    padding: 15px 30px;
     font-size: 1rem;
-    font-weight: 600;
+    font-family: 'Gloria Hallelujah', cursive;
     cursor: pointer;
     display: flex;
     align-items: center;
-    gap: 0.5rem;
+    gap: 10px;
     transition: all 0.2s;
-    margin-top: 1rem;
+    margin-top: 15px;
+    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
   }
 
   .connect-btn:hover:not(:disabled) {
-    background: #5855eb;
+    background: #555;
     transform: translateY(-2px);
-    box-shadow: 0 4px 12px rgba(99, 102, 241, 0.4);
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
   }
 
   .connect-btn:disabled {
@@ -326,83 +343,95 @@
   }
 
   .wallet-info {
-    margin-bottom: 2rem;
-    padding-bottom: 1rem;
-    border-bottom: 1px solid #e2e8f0;
+    margin-bottom: 30px;
+    padding-bottom: 20px;
+    border-bottom: 1px solid #ddd;
   }
 
   .wallet-info h2 {
-    margin: 0 0 0.5rem 0;
-    color: #334155;
+    margin: 0 0 10px 0;
+    color: #333;
+    font-family: 'Gloria Hallelujah', cursive;
+    font-size: 1.5rem;
   }
 
   .address {
-    font-family: 'Monaco', 'Menlo', monospace;
+    font-family: monospace;
     font-size: 0.9rem;
-    color: #6366f1;
-    background: #f1f5f9;
-    padding: 0.5rem 1rem;
+    color: #333;
+    background: #e9e9de;
+    padding: 15px;
     border-radius: 8px;
-    margin: 1rem 0;
+    margin: 15px 0;
     word-break: break-all;
+    border: 1px solid #ddd;
+    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
   }
 
   .disconnect-btn {
-    background: #ef4444;
+    background: #d32f2f;
     color: white;
     border: none;
-    border-radius: 6px;
-    padding: 0.5rem 1rem;
+    border-radius: 5px;
+    padding: 8px 16px;
     font-size: 0.9rem;
+    font-family: 'Gloria Hallelujah', cursive;
     cursor: pointer;
     transition: background 0.2s;
   }
 
   .disconnect-btn:hover {
-    background: #dc2626;
+    background: #b71c1c;
   }
 
   .loading-section {
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 1rem;
-    padding: 2rem;
+    gap: 20px;
+    padding: 40px;
   }
 
   .claimed-status {
     text-align: center;
-    padding: 1rem;
+    padding: 20px;
   }
 
   .claimed-status h3 {
-    color: #22c55e;
-    margin: 1rem 0 0.5rem 0;
+    color: #4caf50;
+    margin: 20px 0 10px 0;
+    font-family: 'Gloria Hallelujah', cursive;
+    font-size: 1.5rem;
   }
 
   .claim-section {
     text-align: center;
-    padding: 1rem;
+    padding: 20px;
   }
 
   .claim-section h3 {
-    color: #059669;
-    margin: 0 0 0.5rem 0;
-    font-size: 1.5rem;
+    color: #4caf50;
+    margin: 0 0 10px 0;
+    font-size: 1.8rem;
+    font-family: 'Gloria Hallelujah', cursive;
   }
 
   .allocation-details {
-    background: #f8fafc;
-    border-radius: 12px;
-    padding: 1.5rem;
-    margin: 1.5rem 0;
+    background: #e9e9de;
+    border-radius: 8px;
+    padding: 20px;
+    margin: 20px 0;
     text-align: left;
+    border: 1px solid #ddd;
+    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
   }
 
   .detail-item {
     display: flex;
     justify-content: space-between;
-    margin-bottom: 0.5rem;
+    align-items: center;
+    margin-bottom: 10px;
+    padding: 5px 0;
   }
 
   .detail-item:last-child {
@@ -410,35 +439,38 @@
   }
 
   .label {
-    color: #64748b;
-    font-weight: 500;
+    color: #555;
+    font-weight: bold;
+    font-size: 1rem;
   }
 
   .value {
-    color: #334155;
-    font-weight: 600;
+    color: #333;
+    font-weight: bold;
+    font-size: 1rem;
   }
 
   .claim-btn {
-    background: #22c55e;
+    background: #4caf50;
     color: white;
     border: none;
-    border-radius: 12px;
-    padding: 1rem 2rem;
+    border-radius: 8px;
+    padding: 15px 30px;
     font-size: 1rem;
-    font-weight: 600;
+    font-family: 'Gloria Hallelujah', cursive;
     cursor: pointer;
     display: flex;
     align-items: center;
-    gap: 0.5rem;
+    gap: 10px;
     transition: all 0.2s;
-    margin: 1rem auto 0;
+    margin: 20px auto 0;
+    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
   }
 
   .claim-btn:hover:not(:disabled) {
-    background: #16a34a;
+    background: #45a049;
     transform: translateY(-2px);
-    box-shadow: 0 4px 12px rgba(34, 197, 94, 0.4);
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
   }
 
   .claim-btn:disabled {
@@ -449,27 +481,35 @@
 
   .no-allocation {
     text-align: center;
-    padding: 2rem;
-    color: #64748b;
+    padding: 40px;
+    color: #555;
+  }
+
+  .no-allocation h3 {
+    font-family: 'Gloria Hallelujah', cursive;
+    font-size: 1.5rem;
+    color: #333;
+    margin-bottom: 10px;
   }
 
   .message {
-    margin-top: 1rem;
-    padding: 1rem;
+    margin-top: 20px;
+    padding: 15px;
     border-radius: 8px;
-    font-weight: 500;
+    font-family: 'Gloria Hallelujah', cursive;
+    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
   }
 
   .message.success {
-    background: #d1fae5;
-    color: #065f46;
-    border: 1px solid #a7f3d0;
+    background: #e8f5e8;
+    color: #2e7d2e;
+    border: 1px solid #4caf50;
   }
 
   .message.error {
-    background: #fee2e2;
-    color: #991b1b;
-    border: 1px solid #fca5a5;
+    background: #fdeaea;
+    color: #d32f2f;
+    border: 1px solid #f44336;
   }
 
   .spinner {
@@ -485,9 +525,54 @@
     to { transform: rotate(360deg); }
   }
 
-  @media (max-width: 640px) {
+  /* Token info section matching main site */
+  .token-info {
+    background-color: #f4f4f4;
+    padding: 20px;
+    margin: 20px auto;
+    border-radius: 8px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+    border: 1px solid #ddd;
+    display: grid;
+    grid-template-columns: auto auto 1fr;
+    column-gap: 20px;
+    align-items: center;
+    max-width: 100%;
+  }
+
+  .token-label,
+  .token-symbol,
+  .token-value {
+    display: flex;
+    align-items: center;
+    padding-left: 10px;
+    text-align: left;
+  }
+
+  .token-label {
+    font-weight: bold;
+    color: #333;
+    padding-left: 0;
+  }
+
+  .token-symbol {
+    font-weight: bold;
+    color: #666;
+    border-left: 2px solid #ddd;
+  }
+
+  .token-value {
+    font-family: monospace;
+    color: #555;
+    word-break: break-all;
+    border-left: 2px solid #ddd;
+    font-size: 0.9rem;
+  }
+
+  /* Responsive design */
+  @media (max-width: 768px) {
     .container {
-      padding: 1rem 0.5rem;
+      padding: 15px;
     }
     
     .header h1 {
@@ -496,16 +581,36 @@
     
     .connect-section,
     .wallet-section {
-      padding: 1.5rem;
+      padding: 30px 20px;
     }
     
     .allocation-details {
-      padding: 1rem;
+      padding: 15px;
     }
     
     .detail-item {
       flex-direction: column;
-      gap: 0.25rem;
+      gap: 5px;
+      align-items: flex-start;
+    }
+
+    .token-info {
+      grid-template-columns: 1fr;
+      text-align: center;
+      row-gap: 10px;
+    }
+
+    .token-label,
+    .token-symbol,
+    .token-value {
+      border-left: none;
+      padding-left: 0;
+      justify-content: center;
+    }
+
+    .token-value {
+      word-break: break-all;
+      font-size: 0.8rem;
     }
   }
 </style>
